@@ -8,57 +8,43 @@ public class PhoneBookApp {
 
 	public static void main(String[] args) {
 		
-		// 4. 검색
-		System.out.println("***************************************");
-		System.out.println("*           전화번호 관리 프로그램                   *");
-		System.out.println("***************************************");
-		System.out.println("1.리스트 2.등록 3.삭제 4.검색 5.종료");
 		Scanner scanner = new Scanner(System.in);
-		System.out.println(">메뉴번호: ");
-		int num = scanner.nextInt();
-		
-		if (num == 1) {
-			PhoneBookDAO dao = new PhoneBookDAOImpl();
-			List<PhoneBookVO> list = dao.getList();
+		while (true) {
+			System.out.println("***************************************");
+			System.out.println("*           전화번호 관리 프로그램                   *");
+			System.out.println("***************************************");
+			System.out.println("1.리스트 2.등록 3.삭제 4.검색 5.종료");
+			System.out.println(">메뉴번호: ");
 			
-			Iterator<PhoneBookVO> it = list.iterator();
+			int num = scanner.nextInt();
 			
-			while(it.hasNext()) {
-				PhoneBookVO item = it.next();
-				System.out.printf("%d\t%s\t%s\t%s%n",
-						item.getId(),
-						item.getName(),
-						item.getHp(),
-						item.getTel());
+			if (num == 1) {
+				PhoneBookMethod select = new PhoneBookMethod();
+				select.selectMethod();
 			}
-		}
-			
-		else if (num == 2) {
-			System.out.println("<2.등록>");
-			Scanner scanner2 = new Scanner(System.in);
-			System.out.println(">이름: ");
-			String str1 = scanner2.next();
-			System.out.println(">휴대전화: ");
-			String str2 = scanner2.next();
-			System.out.println(">집전화: ");
-			String str3 = scanner2.next();
-			
-		
-			PhoneBookVO vo = new PhoneBookVO(null, str1, str2, str3);
-			PhoneBookDAO dao = new PhoneBookDAOImpl();
-			
-			boolean success = dao.insert(vo);
-			
-			System.out.println("등록되었습니다.");
-			
-			scanner2.close();
-			
-		}
-			
-			
-		}
-		
+			else if (num == 2) {
+				PhoneBookMethod insert = new PhoneBookMethod();
+				insert.insertMethod();
+			}
+			else if (num == 3) {
+				PhoneBookMethod delete = new PhoneBookMethod();
+				delete.deleteMethod();
+			}
+			else if (num == 4) {
+				PhoneBookMethod find = new PhoneBookMethod();
+				find.findMethod();
+			}
+			else if (num == 5) {
+				scanner.close();
+				break;
+			}
+			else {
+				System.out.println("다시 입력해 주세요");
+			}
+					
 
+		}
 	}
+}
 
 
