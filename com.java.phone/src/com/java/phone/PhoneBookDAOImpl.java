@@ -187,7 +187,7 @@ public class PhoneBookDAOImpl implements PhoneBookDAO {
 		
 		try {
 			conn = getConnection();
-			String sql = "DELETE FROM phone_book WHERE phone_book id=?";
+			String sql = "DELETE FROM phone_book WHERE id=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setLong(1, id);

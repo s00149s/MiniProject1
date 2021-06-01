@@ -29,13 +29,12 @@ public class PhoneBookMethod {
 	public void insertMethod() {
 		
 		System.out.println("<2.등록>");
-		Scanner scanner2 = new Scanner(System.in);
 		System.out.println(">이름: ");
-		String name = scanner2.next();
+		String name = scanner.next();
 		System.out.println(">휴대전화: ");
-		String hp = scanner2.next();
+		String hp = scanner.next();
 		System.out.println(">집전화: ");
-		String tel = scanner2.next();
+		String tel = scanner.next();
 	
 
 		PhoneBookVO vo = new PhoneBookVO(null, name, hp, tel);
@@ -45,30 +44,25 @@ public class PhoneBookMethod {
 	
 		System.out.println("[등록되었습니다.]");
 	
-		scanner2.close();
-	
 	
 	}
 
 	public void deleteMethod() {
 		
 		System.out.println("<3.삭제>");
-		Scanner scanner3 = new Scanner(System.in);
 		System.out.println(">번호: ");
-		int id = scanner3.nextInt();
+		int id = scanner.nextInt();
 	
 		PhoneBookDAO dao = new PhoneBookDAOImpl();
 		boolean success = dao.delete(Long.valueOf(id));
 	
 		System.out.println("[삭제되었습니다.]");
-	
-		scanner3.close();
+		
 	}
 	
 	public void searchMethod() {
 
 		System.out.println("<4.검색>");
-		Scanner scanner4 = new Scanner(System.in);
 		System.out.println(">이름: ");
 		String keyword = scanner.next();
 		
@@ -85,8 +79,7 @@ public class PhoneBookMethod {
 					vo.getHp(),
 					vo.getTel());
 		}
-	
-	
+		
 }
 	
 	
