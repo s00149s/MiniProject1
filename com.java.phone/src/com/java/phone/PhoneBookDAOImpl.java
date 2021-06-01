@@ -74,7 +74,7 @@ public class PhoneBookDAOImpl implements PhoneBookDAO {
 		
 		List<PhoneBookVO> list = new ArrayList<>();
 		
-		String sql = "SELECT phonebook_id, phonebook_name, phonebook_hp, phonebook_tel FROM phone_book " + 
+		String sql = "SELECT id, name, hp, tel FROM phone_book " + 
 					"WHERE name LIKE ?";
 		
 		try {
@@ -86,10 +86,10 @@ public class PhoneBookDAOImpl implements PhoneBookDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				Long id = rs.getLong("phonebook_id");
-				String name = rs.getString("phonebook_name");
-				String hp = rs.getString("phonebook_hp");
-				String tel = rs.getString("phonebook_tel");
+				Long id = rs.getLong("id");
+				String name = rs.getString("name");
+				String hp = rs.getString("hp");
+				String tel = rs.getString("tel");
 				
 				PhoneBookVO vo = new PhoneBookVO(id, name, hp, tel);
 				list.add(vo);
@@ -118,8 +118,8 @@ public class PhoneBookDAOImpl implements PhoneBookDAO {
 		
 		try {
 			conn = getConnection();
-			String sql = "SELECT phonebook_id, phonebook_name, phonebook_hp, phonebook_tel " +
-							"WHERE phonebook_id=?";
+			String sql = "SELECT id, name, hp, tel " +
+							"WHERE id=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setLong(1,  id);
@@ -157,7 +157,7 @@ public class PhoneBookDAOImpl implements PhoneBookDAO {
 		
 		try {
 			conn = getConnection();
-			String sql = "INSERT INTO phone_book VALUES(seq_phone_book_pk.NEXTVAL, ?, ?)";
+			String sql = "INSERT INTO phone_book VALUES(seq_phone_book_pk.NEXTVAL, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			
 			
@@ -209,8 +209,33 @@ public class PhoneBookDAOImpl implements PhoneBookDAO {
 
 	@Override
 	public boolean update(PhoneBookVO vo) {
-		// TODO Auto-generated method stub
-		return false;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int updatedCount = 0;
+		
+		try {
+			conn = getConnection();
+			String sql = "UPDATE phone_book SET name=?, hp=?, tel=? WHERE phone_book id=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setLong(1,  vo.getId());
+			pstmt.setString(2,  vo.getName());
+			pstmt.setString(3, vo.getHp());
+			pstmt.setString(4,  vo.getTel());
+			
+			updatedCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+				pstmt.close();
+			} catch (Exception e) {
+				
+			}
+		}
+		
+		return 1 == updatedCount;
 	}
 
 	
