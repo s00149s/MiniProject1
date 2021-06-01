@@ -31,8 +31,8 @@ public class PhoneBookApp {
 				delete.deleteMethod();
 			}
 			else if (num == 4) {
-				PhoneBookMethod find = new PhoneBookMethod();
-				find.findMethod();
+				PhoneBookMethod search = new PhoneBookMethod();
+				search.searchMethod();
 			}
 			else if (num == 5) {
 				scanner.close();

@@ -23,8 +23,9 @@ public class PhoneBookMethod {
 					item.getName(),
 					item.getHp(),
 					item.getTel());
+			}
 	}
-}
+	
 	public void insertMethod() {
 		
 		System.out.println("<2.등록>");
@@ -47,7 +48,7 @@ public class PhoneBookMethod {
 		scanner2.close();
 	
 	
-}
+	}
 
 	public void deleteMethod() {
 		
@@ -62,12 +63,28 @@ public class PhoneBookMethod {
 		System.out.println("[삭제되었습니다.]");
 	
 		scanner3.close();
-}
-	public void findMethod() {
+	}
+	
+	public void searchMethod() {
 
 		System.out.println("<4.검색>");
 		Scanner scanner4 = new Scanner(System.in);
 		System.out.println(">이름: ");
+		String keyword = scanner.next();
+		
+		PhoneBookDAO dao = new PhoneBookDAOImpl();
+		List<PhoneBookVO> list = dao.search(keyword);
+		
+		Iterator<PhoneBookVO> it = list.iterator();
+		
+		while(it.hasNext()) {
+			PhoneBookVO vo = it.next();
+			System.out.printf("%d\t%s\t%s\t%s",
+					vo.getId(),
+					vo.getName(),
+					vo.getHp(),
+					vo.getTel());
+		}
 	
 	
 }
