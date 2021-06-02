@@ -6,6 +6,7 @@ public class PhoneBookVO {
 	private String hp;
 	private String tel;
 	
+	
 	public PhoneBookVO() {
 	}
 	
