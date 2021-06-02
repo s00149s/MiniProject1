@@ -6,7 +6,7 @@ public class PhoneBookVO {
 	private String hp;
 	private String tel;
 	
-	
+
 	public PhoneBookVO() {
 	}
 	
@@ -45,12 +45,13 @@ public class PhoneBookVO {
 		this.hp = hp;
 	}
 
-	public String getTel() {
+	public String getTel() {		
 		return tel;
 	}
 
 	public void setTel(String tel) {
 		this.tel = tel;
+		
 	}
 
 	@Override
