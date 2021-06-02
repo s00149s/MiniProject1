@@ -38,7 +38,7 @@ public class PhoneBookApp {
 			else if (num == 5) {
 				scanner.close();
 				System.out.println("***************************************");
-				System.out.println("*               감사합니다                          *");
+				System.out.println("*               감사합니다               *");
 				System.out.println("***************************************");
 				break;
 			}
